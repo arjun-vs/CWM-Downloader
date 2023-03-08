@@ -1,4 +1,7 @@
 "# CWM-Downloader" 
+---------------------------------------------------
+Just an application created for downloading courses from CodeWithMosh
+
 HOW TO INSTALL
 ----------------------------------------------------
 
