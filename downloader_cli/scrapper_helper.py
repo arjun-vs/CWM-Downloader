@@ -233,7 +233,7 @@ def download_multiple_lecture_videos():
                 return
             f = downloader.download_multiple_files(urls, downloader.fetch_folder_name())
             console.print(
-                f"Successfully downloaded the Course {downloader.fetch_folder_name()}|| Total file download size: {util.convert_size([0])} || Elapsed time for complete download: {str(datetime.timedelta(seconds=f[1]))} (approx.)|| Total files downloaded: {f[2]} "
+                f"Successfully downloaded the Course {downloader.fetch_folder_name()}|| Total file download size: {util.convert_size(f[0])} || Elapsed time for complete download: {str(datetime.timedelta(seconds=f[1]))} (approx.)|| Total files downloaded: {f[2]} "
             )
             start_cli()
         elif user_input == "Restart Downloader":
