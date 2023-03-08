@@ -11,6 +11,8 @@ from rich.style import Style
 
 from rich.console import Console
 
+import datetime
+
 console = Console()
 
 INFO_STYLE = Style(color="blue", blink=False, bold=True)
@@ -105,11 +107,11 @@ class CodeWithMoshDownloader(CodeWithMoshUtil):
 
             with open(file_path, "wb") as fp:
                 for chunk in tqdm.tqdm(
-                    r.iter_content(chunk_size=chunk_size),
-                    total=progress_bar_num,
-                    unit="KB",
-                    desc="",
-                    leave=True,
+                        r.iter_content(chunk_size=chunk_size),
+                        total=progress_bar_num,
+                        unit="KB",
+                        desc="",
+                        leave=True,
                 ):
                     fp.write(chunk)
             end = timer()
@@ -151,11 +153,11 @@ class CodeWithMoshDownloader(CodeWithMoshUtil):
 
             with open(file_path, "wb") as fp:
                 for chunk in tqdm.tqdm(
-                    r.iter_content(chunk_size=chunk_size),
-                    total=progress_bar_num,
-                    unit="KB",
-                    desc="",
-                    leave=True,
+                        r.iter_content(chunk_size=chunk_size),
+                        total=progress_bar_num,
+                        unit="KB",
+                        desc="",
+                        leave=True,
                 ):
                     fp.write(chunk)
             console.print(
@@ -197,7 +199,7 @@ def download_single_lecture_video():
         dl_link = downloader.extract_download_link(page_url=url)
         f = downloader.download_single_file(dl_link, "SingleLectureFilesDownloads")
         console.print(
-            f"Successfully Downloaded the file || Elapsed time: {round(f)} sec. (approx.)",
+            f"Successfully Downloaded the file || Elapsed time: {str(datetime.timedelta(seconds=f))} (approx.)",
             style=SUCCESS_STYLE,
         )
         start_cli()
@@ -212,6 +214,7 @@ def download_single_lecture_video():
 def download_multiple_lecture_videos():
     from cli import start_cli
 
+    util = CodeWithMoshUtil()
     url = input(
         "Enter the URL of the any lecture from the course you wish to download: \n"
     )
@@ -230,7 +233,7 @@ def download_multiple_lecture_videos():
                 return
             f = downloader.download_multiple_files(urls, downloader.fetch_folder_name())
             console.print(
-                f"Successfully downloaded the Course {downloader.fetch_folder_name()}|| Total file download size: {f[0]} || Elapsed time for complete download: {f[1]} sec (approx.)|| Total files downloaded: {f[2]} "
+                f"Successfully downloaded the Course {downloader.fetch_folder_name()}|| Total file download size: {util.convert_size([0])} || Elapsed time for complete download: {str(datetime.timedelta(seconds=f[1]))} (approx.)|| Total files downloaded: {f[2]} "
             )
             start_cli()
         elif user_input == "Restart Downloader":
