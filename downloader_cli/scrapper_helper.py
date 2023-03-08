@@ -119,7 +119,7 @@ class CodeWithMoshDownloader(CodeWithMoshUtil):
             return elapsed_time
         elif user_input == "Restart Downloader":
             start_cli()
-        elif user_input == "Exit":
+        elif user_input == "Exit Downloader":
             exit()
         else:
             raise Exception("Invalid input received!")
