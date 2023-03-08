@@ -66,7 +66,7 @@ class CodeWithMoshDownloader(CodeWithMoshUtil):
             soup = self.soup_html_parser()
             return (
                 soup.find("section", {"class": "lecture-page-layout"}).find("h2").text
-            )
+            ).replace(":", " ")
         except Exception:
             return False
 
